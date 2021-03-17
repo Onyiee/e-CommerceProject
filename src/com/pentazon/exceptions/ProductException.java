@@ -1,9 +1,6 @@
 package com.pentazon.exceptions;
 
-public class ProductException extends Exception {
-    public ProductException() {
-    }
-
+public class ProductException extends PentazonException {
     public ProductException(String message) {
         super(message);
     }

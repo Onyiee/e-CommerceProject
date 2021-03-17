@@ -6,13 +6,14 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProductRepoMock {
+public class ProductDB {
     private Map< String, Product> mockProducts;
 
-    public ProductRepoMock(){
+    public ProductDB(){
         mockProducts = new HashMap<>();
-        Product plantainChips = new Product("Adunni chips","Savoury plantain chips", new BigDecimal(50));
-        plantainChips.setProductId("AD001");
+
+         Product plantainChips = new Product("Adunni chips","Savoury plantain chips", new BigDecimal(50));
+         plantainChips.setProductId("AD001");
          mockProducts.put(plantainChips.getProductId(),plantainChips);
 
          Product noseMasks = new Product();

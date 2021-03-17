@@ -76,6 +76,7 @@ public class Cart {
             Iterator<CartItem> cartItemIterator = cartItems.values().iterator();
             while (cartItemIterator.hasNext()){
                 this.total = this.total.add(cartItemIterator.next().getTotal());
+
             }
         }
         return this.getTotal();

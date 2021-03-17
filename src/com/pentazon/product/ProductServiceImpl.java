@@ -3,7 +3,7 @@ package com.pentazon.product;
 import com.pentazon.exceptions.ProductException;
 
 public class ProductServiceImpl implements ProductService {
-    private ProductRepoMock productRepoMock = new ProductRepoMock();
+    private ProductDB productRepoMock = new ProductDB();
     /**
      * search for product with specific id
      *
@@ -16,4 +16,6 @@ public class ProductServiceImpl implements ProductService {
         return productRepoMock.getProductById(productId);
 
     }
+
+
 }
