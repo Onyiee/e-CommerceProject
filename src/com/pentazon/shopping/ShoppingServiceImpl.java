@@ -2,15 +2,36 @@ package com.pentazon.shopping;
 
 import com.pentazon.customers.Buyer;
 import com.pentazon.exceptions.CheckOutExceptions;
+import com.pentazon.payments.PayStack;
+import com.pentazon.payments.PaymentCard;
+import com.pentazon.payments.PaymentService;
+import com.pentazon.payments.PaymentServiceImpl;
+
+import java.time.LocalDate;
 
 public class ShoppingServiceImpl implements ShoppingService {
+    private PaymentService paymentService;
+    public ShoppingServiceImpl(){
+        this.paymentService = new PayStack();
+    }
 
     @Override
-    public boolean checkOut(Buyer buyer) throws CheckOutExceptions {
-     if (isValidCheckOut(buyer)){
-     }
-        return false;
+    public Order checkOut(Buyer buyer) throws CheckOutExceptions {
+        this.isValidCheckOut(buyer);
+        Order order = new Order();
+        Cart buyerCart = buyer.getCart();
+        boolean result = paymentService.pay(buyerCart.getPaymentCard(), buyerCart.calculateCartTotal());
+       if (result ){
+           order.setOrderItems(buyer.getCart().getCartItems());
+           order.setPaid(result);
+           order.setOrderDate(LocalDate.now());
+           order.setOrderTotal(buyerCart.calculateCartTotal());
+           order.setDeliveryAddress(buyerCart.getDeliveryAddress());
+           buyer.setCart(null);
+       }
+        return order;
     }
+
 
     private boolean isValidCheckOut(Buyer buyer) throws CheckOutExceptions{
         if (buyer == null){
@@ -27,5 +48,8 @@ public class ShoppingServiceImpl implements ShoppingService {
         }
         return true;
     }
+
+
+
 
 }

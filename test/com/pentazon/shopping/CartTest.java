@@ -57,7 +57,7 @@ class CartTest {
         cart.addToCart(shirt);
         assertFalse(cart.getCartItems().isEmpty());
         assertEquals(2,cart.getCartItems().size());
-        CartItem chipsItem = cart.getCartItems().get(plantainChips.getProductId());
+        Item chipsItem = cart.getCartItems().get(plantainChips.getProductId());
         assertEquals(1,chipsItem.getQuantity());
         BigDecimal cartTotal = cart.calculateCartTotal();
         assertEquals(5050,cartTotal.intValue());

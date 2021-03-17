@@ -13,6 +13,7 @@ public class Buyer extends Customer {
     public Buyer() {
         this.cards = new ArrayList<>();
         this.cart = new Cart();
+        this.setAddresses(new ArrayList<>());
     }
     public List<PaymentCard> getCards() {
         return cards;
